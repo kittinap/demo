@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="LOG_DIR">/data/logs/@project.name@</Property>
+        <Property name="PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} | %-5level | DEMO | AppLog | demo | %X{trans_id} | JAVA | %-30.40c{1.} | %msg%n</Property>
+    </Properties>
+
+    <CustomLevels>
+        <CustomLevel name="EVENT" intLevel="450"/>
+    </CustomLevels>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN}"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="${LOG_DIR}/@project.name@.log"
+                     filePattern="${LOG_DIR}/$${date:yyyy-MM}/@project.name@-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>${PATTERN}</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="200 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${LOG_DIR}" maxDepth="4">
+                    <IfFileName glob="*/@project.name@-*.log"/>
+                    <IfLastModified age="15d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="EVENT">
+            <AppenderRef ref="RollingFile" level="EVENT"/>
+            <AppenderRef ref="Console" level="EVENT"/>
+        </Root>
+    </Loggers>
+</Configuration>

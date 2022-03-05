@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: Demo
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB10Dialect
+
+server:
+  servlet:
+    context-path: /demo
+
+management:
+  metrics:
+    enable:
+      all: false
+      vsa: true
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: info,health,prometheus
+      path-mapping:
+        health: /health
+        info: /info
+        prometheus: /metrics
