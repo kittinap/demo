@@ -1,7 +1,8 @@
 package com.example.demo3.service
 
-import com.example.demo3.model.HistoryResponse
+import com.example.demo3.model.service.HistoryInfo
+import com.example.demo3.model.service.HistoryServiceRequest
 
 interface HistoryService {
-    fun getHistory(startDateTime: String, endDateTime: String):ArrayList<HistoryResponse>
+    fun getHistory(data: HistoryServiceRequest):List<HistoryInfo>
 }

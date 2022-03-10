@@ -13,6 +13,8 @@ data class TransactionHistory (
     @Id
     var id: String = UUID.randomUUID().toString(),
     val dateTime: LocalDateTime = LocalDateTime.now(),
-    val amount: String?=null,
+    val amount: Double=0.0,
     val updateBy: String?="system"
+
+
 ) : Serializable
