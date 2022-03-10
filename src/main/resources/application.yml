@@ -2,9 +2,9 @@ spring:
   application:
     name: Demo
   datasource:
-    url: jdbc:mariadb://alp-backend.viriyah.cloud:3306/vapi
-    username: alp
-    password: alp@2021
+    url:
+    username:
+    password:
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     open-in-view: false
